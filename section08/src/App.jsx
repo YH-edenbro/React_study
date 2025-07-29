@@ -41,11 +41,32 @@ function App() {
     setTodos([newTodo, ...todos])
   }
 
+  const onUpdate = (targetID) => {
+    // todos State의 값들 중에
+    // targetID와 일치하는 id를 갖는 투두 아이템의 isDone 변경
+
+    // 인수 : todos 배열에서 targetID와 일치하는 id를 갖는 요소의 데이터만 딱 바꾼 새로운 배열
+    setTodos(todos.map((todo) => {
+      if(todo.id === targetID){
+        return {
+          ...todo,
+          isDone : !todo.isDone
+       }
+      }
+      return todo
+    }))
+  }
+
+  const onDelete = (targetID) => {
+    // 인수 : todos 배열에서 targetID와 일치하는 id를 갖는 요소만 삭제한 새로운 배열
+    setTodos(todos.filter((todo)=> todo.id !== targetID))
+  }
+
   return (
     <div className="App">
       <Header />
       <Editor onCreate={onCreate}/>
-      <List />
+      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete}/>
     </div>
   )
 }
