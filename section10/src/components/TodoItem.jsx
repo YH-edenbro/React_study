@@ -1,4 +1,6 @@
 import './TodoItem.css'
+import { memo } from 'react'
+
 
 const TodoItem = ({id, isDone, content, date, onUpdate, onDelete}) => {
     
@@ -20,4 +22,6 @@ const TodoItem = ({id, isDone, content, date, onUpdate, onDelete}) => {
     )
 }
 
-export default TodoItem
+const momoizedTodoItem = memo(TodoItem)
+
+export default momoizedTodoItem
